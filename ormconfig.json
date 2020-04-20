@@ -1,0 +1,24 @@
+{
+    "type":"mssql",
+    "host":"unahvjamaya.database.windows.net",
+    "port":1433,
+    "username":"vjamaya",
+    "password":"Admin203Amaya.",
+    "database":"ingreso_vehiculos",
+    "options":{
+        "synchronize":true,
+        "logging":false,
+        "encrypt":true,
+        "enableArithAbort":true
+    },
+    "entities": [
+        "src/entity/**/*.ts"
+    ],
+    "migrations": [
+        "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+        "src/subscriber/**/*.ts"
+    ]
+    
+}
