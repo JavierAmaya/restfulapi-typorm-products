@@ -11,5 +11,8 @@ export class SupplierController {
 
     private routes(){
         this.app.route("/suppliers").get(this.supplier_service.getAll);
+        this.app.route("/supplier/:id")
+        .get(this.supplier_service.getOne)
+        .put(this.supplier_service.updateOne);
     }
 }
