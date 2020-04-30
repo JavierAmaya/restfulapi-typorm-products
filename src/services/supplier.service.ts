@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {getConnection} from "typeorm";
 import {Supplier} from "../entity/supplier.entity";
+import {ViewSuppliersByproducts} from "../entity/supplierbynproducts.entity";
 
 export class SupplierService {
     
@@ -11,6 +12,11 @@ export class SupplierService {
 
     public async getOne(req:Request, res:Response){
         const supplier:Supplier[] = await getConnection().getRepository(Supplier).find({where:{SupplierID:req.params.id}});
+        res.status(200).json(supplier[0]);
+    }
+
+    public async getOneSummary(req:Request, res:Response){
+        const supplier:ViewSuppliersByproducts[] = await getConnection().getRepository(ViewSuppliersByproducts ).find({where:{SupplierID:req.params.id}});
         res.status(200).json(supplier[0]);
     }
 
