@@ -27,3 +27,19 @@ export class Supplier{
     @Column()    
     Phone:string;
 }
+
+export interface ISupplier{
+    SupplierID:number;
+    SupplierName:string;
+    ContactName:string;
+    Address:string;
+    City:string;
+    PostalCode:string;
+    Country:string;
+    Phone:string; 
+}
+
+export interface IResult{
+    Successed:boolean;
+    MSG: String;
+}

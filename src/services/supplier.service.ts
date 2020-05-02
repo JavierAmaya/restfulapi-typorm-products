@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {getConnection} from "typeorm";
-import {Supplier} from "../entity/supplier.entity";
+import {Supplier,ISupplier,IResult} from "../entity/supplier.entity";
 import {ViewSuppliersByproducts} from "../entity/supplierbynproducts.entity";
 
 export class SupplierService {
@@ -44,6 +44,21 @@ export class SupplierService {
                 Message: Error.Message
             });
         }
+    }
+
+    public async createOne(req: Request , res:Response){
+        const s : ISupplier = req.body;
+        const result: IResult[] = await getConnection().query(`EXEC myExample.SP_CREATE_SUPPLIER 
+        @SupplierID = ${s.SupplierID},
+        @SupplierName = '${s.SupplierName}',
+        @ContactName = '${s.ContactName}',
+        @Address = '${s.Address}',
+        @City = '${s.City} ',
+        @PostalCode = '${s.PostalCode}',
+        @Country = '${s.Country}',
+        @Phone = '${s.Phone}'`);
+
+        res.status(201).json(result[0])
     }
     
 }
