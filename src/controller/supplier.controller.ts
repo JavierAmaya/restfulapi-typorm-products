@@ -20,6 +20,7 @@ export class SupplierController {
 
         this.app.route("/supplier/:id")
         .get(this.supplier_service.getOne)
-        .put(this.supplier_service.updateOne);
+        .put(this.supplier_service.updateOne)
+        .delete(this.supplier_service.deleteOne);
     }
 }

@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {getConnection} from "typeorm";
 import {Supplier,ISupplier,IResult} from "../entity/supplier.entity";
 import {ViewSuppliersByproducts} from "../entity/supplierbynproducts.entity";
+import { request } from "https";
 
 export class SupplierService {
     
@@ -42,7 +43,7 @@ export class SupplierService {
             res.status(401).json({
                 update:false,
                 Message: Error.Message
-            });
+            }); 
         }
     }
 
@@ -58,7 +59,13 @@ export class SupplierService {
         @Country = '${s.Country}',
         @Phone = '${s.Phone}'`);
 
-        res.status(201).json(result[0])
+        res.status(201).json(result[0]) 
+    }
+
+    public async deleteOne(req: Request , res:Response){
+        const result: IResult[] = await getConnection().query(`EXEC myExample.SP_DELETE_SUPPLIER 
+        @SupplierID = ${req.params.id} `);
+        res.status(201).json(result[0]); 
     }
     
 }
