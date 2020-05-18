@@ -2,7 +2,7 @@ import {Entity, Column, PrimaryColumn} from "typeorm";
 
 @Entity({schema:"mySchema", database:"ingreso_vehiculos",name:"fact_summary"})
 export class Fact_Summary{
-    @Column()    
+    @PrimaryColumn()    
     CustomerID : Number
     @Column()    
     CustomerName : string

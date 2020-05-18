@@ -1,6 +1,5 @@
 import {Application} from "express";
 import { CustomerService } from "../services/customer.service";
-import { Fact_Summary } from "../entity/fact_summary";
 
 export class CustomerController {
     customer_service: CustomerService;
@@ -11,14 +10,10 @@ export class CustomerController {
     }
 
     private routes(){
-        this.app.route("/fact_summary").get(this.customer_service.getAll);
+        this.app.route("/customers/fact_summary").get(this.customer_service.fillTable);
 
-        this.app.route("/fact_summary")
-        .post(this.customer_service.createOne);
 
-        this.app.route("/fact_summary/:id").put(this.customer_service.updateOne);
+        this.app.route("/customer/:id/fact_summary").get(this.customer_service.getOneCustomer);
 
-        
-       
     }
 }
